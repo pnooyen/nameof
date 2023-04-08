@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Head from 'next/head'
+import Head from "next/head";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 // import Header from "@/src/components/header";
@@ -14,7 +14,7 @@ export default function Home() {
   const [results, setResults] = useState([]);
 
   const genTheName = async (data: string) => {
-    setType(data)
+    setType(data);
     setLoading(true);
     const res = fetch("/api/generator", {
       method: "POST",
@@ -79,13 +79,19 @@ export default function Home() {
             </h1>
           </button>
 
+          <input
+            onChange={(v) => setType(v.target.value)}
+            className="mt-2 p-3 border-2 border-text focus:outline-none rounded-lg bg-secondary text-text placeholder-text placeholder-opacity-70 text-sm lg:text-base"
+            placeholder={`Pencil, Car, Building or etc.`}
+          ></input>
+
           <button
-            onClick={() => genTheName("Car")}
+            onClick={() => genTheName(type)}
             disabled={loading}
             className="flex items-center justify-center border-2 border-text space-x-1 w-40 h-11 md:w-[300px] md:h-[45px] bg-primary rounded-lg transition duration-[400ms] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)]"
           >
             <h1 className="md:text-lg font-semibold text-text">
-              {loading ? "Loading..." : "Gimme Car names"}
+              {loading ? "Loading..." : "Submit from Above"}
             </h1>
           </button>
 
